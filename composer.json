@@ -1,0 +1,37 @@
+{
+    "name": "dateczech/dateczech",
+    "type": "library",
+    "description": "Dates for Czech devs",
+    "keywords": [
+        "date",
+        "czech",
+        "dates",
+        "čeština",
+        "datumy",
+        "státní svátky",
+        "formátování",
+        "skloňování"
+    ],
+    "homepage": "https://github.com/jaCUBE/dateczech",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jakub Rychecký",
+            "email": "jakub@rychecky.cz",
+            "homepage": "http://rychecky.cz/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-calendar": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "DateCzech\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "6.5.*"
+    }
+}

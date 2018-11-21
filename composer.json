@@ -1,5 +1,5 @@
 {
-    "name": "dateczech/dateczech",
+    "name": "datetimeczech/datetimeczech",
     "type": "library",
     "description": "Dates for Czech devs",
     "keywords": [
@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "DateCzech\\": "src/"
+            "DateTimeCzech\\": "src/"
         }
     },
     "require-dev": {

@@ -1,23 +1,32 @@
 <?php
 
 /**
+ * Public holiday checker and manager.
  *
+ * @package  DateTimeCzech
+ * @author   Jakub Rychecký <jakub@rychecky.cz>
  */
 
 namespace DateTimeCzech;
 
+class PublicHoliday
+{
 
-class PublicHoliday {
-
+    /**
+     * Day of the year since Easter Friday is public holiday
+     */
     const YEAR_EASTER_FRIDAY = 2016;
 
     /**
-     * @var DateTimeCzech
+     * @var DateTimeCzech DateTimeCzech object
      */
     private $dateTimeCzech;
 
-
-
+    /**
+     * PublicHoliday constructor.
+     *
+     * @param DateTimeCzech $dateTimeCzech DateTimeCzech object
+     */
     public function __construct($dateTimeCzech)
     {
         $this->setDateTimeCzech($dateTimeCzech);
@@ -25,10 +34,12 @@ class PublicHoliday {
 
     /**
      * Check if date is public holiday in Czech Republic.
+     *
      * @throws \Exception
      * @return bool|string Returns name of the public holiday or false if date is not public holiday
      */
-    public function isPublicHoliday() {
+    public function isPublicHoliday()
+    {
         $date = $this->getDateTimeCzech()->format('Y-m-d');
         $holidayList = $this->getPublicHolidayListForYear();
 
@@ -37,15 +48,18 @@ class PublicHoliday {
 
     /**
      * Generate date list of public holidays in chosen year.
+     *
      * @param string|int $year Optional year, otherwise taken from used DateTimeCzech object
+     *
      * @throws \Exception
      * @return array The list of Czech public holiday of the year (Y-m-d => holiday name)
      */
-    public function getPublicHolidayListForYear($year = '') {
+    public function getPublicHolidayListForYear($year = '')
+    {
         $holidayList = [];
         $year = $this->prepareYear($year);
 
-        // Generic public holidays date list for this year
+        // General static public holidays date list for this year
         foreach (Dictionary::PUBLIC_HOLIDAY as $date => $name) {
             $dateFull = $year . '-' . $date;
             $holidayList[$dateFull] = $name;
@@ -70,11 +84,14 @@ class PublicHoliday {
     }
 
     /**
-     * @param $year
+     * Prepare year for Czech public holiday list.
      *
-     * @return int
+     * @param string|int $year Chosen year (or empty for year of the setted date)
+     *
+     * @return int Result year
      */
-    private function prepareYear($year) {
+    private function prepareYear($year = '')
+    {
         $year = (int)$year;
 
         if (!empty($year)) {
@@ -84,10 +101,10 @@ class PublicHoliday {
         return (int)$this->getDateTimeCzech()->format('Y');
     }
 
-
-
     /**
-     * @return mixed
+     * Get DateTimeCzech object.
+     *
+     * @return DateTimeCzech DateTimeCzech object
      */
     public function getDateTimeCzech()
     {
@@ -95,7 +112,11 @@ class PublicHoliday {
     }
 
     /**
-     * @param mixed $dateTime
+     * Set DateTimeCzech object.
+     *
+     * @param DateTimeCzech DateTimeCzech object
+     *
+     * @return void
      */
     public function setDateTimeCzech($dateTime)
     {

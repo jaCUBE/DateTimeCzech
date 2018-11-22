@@ -1,16 +1,19 @@
 <?php
 
 /**
+ * Dictionary for DateTimeCzech contains strings for translating Czech vars.
  *
+ * @package  DateTimeCzech
+ * @author   Jakub Rychecký <jakub@rychecky.cz>
  */
 
 namespace DateTimeCzech;
 
-
-class Dictionary {
+class Dictionary
+{
 
     /**
-     *
+     * The list of day of the week full names with flexes
      */
     const DAY_NAME = [1 =>
         [1 => 'pondělí', 'pondělí', 'pondělí', 'pondělí', '', 'pondělí', 'pondělím'],
@@ -23,14 +26,14 @@ class Dictionary {
     ];
 
     /**
-     *
+     * The list of day of the week short names
      */
     const DAY_NAME_SHORT = [1 =>
         'po', 'út', 'st', 'čt', 'pá', 'so', 'ne',
     ];
 
     /**
-     *
+     * The list of month full names with flexes
      */
     const MONTH_NAME = [1 =>
         [1 => 'leden', 'ledna', 'lednu', 'leden', '', 'lednu', 'lednu'],
@@ -48,13 +51,16 @@ class Dictionary {
     ];
 
     /**
-     *
+     * The list of month short names
      */
     const MONTH_NAME_SHORT = [1 =>
         'led', 'únr', 'bře', 'dub', 'kvě', 'črn',
         'črv', 'srp', 'zář', 'říj', 'lis', 'pro',
     ];
 
+    /**
+     * The list of general static public holiday in Czech Republic
+     */
     const PUBLIC_HOLIDAY = [
         '01-01' => 'Nový rok',
         '05-01' => 'Svátek práce',
@@ -69,6 +75,9 @@ class Dictionary {
         '12-26' => '2. svátek vánoční',
     ];
 
+    /**
+     * The list of Easter public holiday in Czech Republic, those are dynamic
+     */
     const PUBLIC_HOLIDAY_OTHERS = [
         'easterMonday' => 'Velikonoční pondělí',
         'easterFriday' => 'Velký pátek',

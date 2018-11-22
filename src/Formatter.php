@@ -1,68 +1,37 @@
 <?php
 
 /**
+ * Dictionary for DateTimeCzech contains strings for translating Czech vars.
  *
+ * @package  DateTimeCzech
+ * @author   Jakub Rychecký <jakub@rychecky.cz>
  */
 
 namespace DateTimeCzech;
 
+class Formatter
+{
 
-class Formatter {
     /**
-     * @var DateTimeCzech
+     * @var DateTimeCzech DateTime object
      */
     private $dateTimeCzech;
 
     /**
-     * @var int Pád
+     * @var int Flex in Czech (1-7)
      */
     private $flex = 1;
 
-
+    /**
+     * Formatter constructor.
+     *
+     * @param DateTimeCzech $dateTimeCzech DateTime object
+     * @param int $flex Flex in Czech (1-7)
+     */
     public function __construct($dateTimeCzech, $flex = 1)
     {
         $this->setDateTimeCzech($dateTimeCzech);
         $this->setFlex($flex);
-    }
-
-    /**
-     * @return int
-     */
-    public function getFlex()
-    {
-        return $this->flex;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getDateTimeCzech()
-    {
-        return $this->dateTimeCzech;
-    }
-
-    /**
-     * @param mixed $dateTime
-     */
-    public function setDateTimeCzech($dateTime)
-    {
-        $this->dateTimeCzech = $dateTime;
-    }
-
-    /**
-     * @param int $flex
-     */
-    public function setFlex($flex)
-    {
-        $flex = (int)$flex;
-
-        // Seven flexes for Czech only
-        if ($flex < 1 || $flex > 7) {
-            $flex = 1;
-        }
-
-        $this->flex = $flex;
     }
 
     /**
@@ -87,13 +56,14 @@ class Formatter {
     }
 
     /**
-     *
+     * Replace Czech day of the week names (full and short) for special variables in format string.
      *
      * @param string $format Format string according to date() and DateTime
      *
-     * @return mixed
+     * @return string Format string with replaced Czech day of the week name
      */
-    private function replaceDayOfWeek($format) {
+    private function replaceDayOfWeek($format)
+    {
         // Day of the week: replace full textual representation
         if (strpos($format, 'l[cz]') !== false) {
             $dayName = Dictionary::DAY_NAME[$this->getDateTimeCzech()->format('N')][$this->getFlex()];
@@ -110,13 +80,14 @@ class Formatter {
     }
 
     /**
-     *
+     * Replace Czech month name (full and short) for special variables in format string.
      *
      * @param string $format Format string according to date() and DateTime
      *
-     * @return string
+     * @return string Format string with replaced Czech month name
      */
-    private function replaceMonth($format) {
+    private function replaceMonth($format)
+    {
         // Month: replace full textual representation
         if (strpos($format, 'F[cz]') !== false) {
             $monthName = Dictionary::MONTH_NAME[$this->getDateTimeCzech()->format('n')][$this->getFlex()];
@@ -133,20 +104,27 @@ class Formatter {
     }
 
     /**
-     * @param $search
-     * @param $replace
-     * @param $format
+     * Replace Czech day of the week names (full and short) for special variables in format string.
      *
-     * @return mixed
+     * @see http://php.net/manual/en/function.str-replace.php
+     *
+     * @param string $search
+     * @param string $replace
+     * @param string $format Original date format string
+     *
+     * @return string Format string with replaced Czech day of the week name
      */
-    private function replaceInFormat($search, $replace, $format) {
+    private function replaceInFormat($search, $replace, $format)
+    {
         return str_replace($search, $this->getEscapedString($replace), $format);
     }
 
     /**
-     * @param $string
+     * Escape string to be ignored while formatting via DateTime::format
      *
-     * @return string
+     * @param string $string Unescaped format string
+     *
+     * @return string Escaped format string
      */
     private function getEscapedString($string)
     {
@@ -156,6 +134,56 @@ class Formatter {
             return '';
         }
 
+        // Appending \\ before every character to make them escaped
         return '\\' . implode('\\', str_split(trim($string)));
+    }
+
+    /**
+     * Get DateTimeCzech object.
+     *
+     * @return DateTimeCzech DateTimeCzech object
+     */
+    public function getDateTimeCzech()
+    {
+        return $this->dateTimeCzech;
+    }
+
+    /**
+     * Set DateTimeCzech object.
+     *
+     * @param DateTimeCzech $dateTime
+     */
+    public function setDateTimeCzech($dateTime)
+    {
+        $this->dateTimeCzech = $dateTime;
+    }
+
+    /**
+     * Get flex in Czech.
+     *
+     * @return int
+     */
+    public function getFlex()
+    {
+        return $this->flex;
+    }
+
+    /**
+     * Set Czech language flex.
+     *
+     * @param int $flex Flex (1-7)
+     *
+     * @return void
+     */
+    public function setFlex($flex)
+    {
+        $flex = (int)$flex;
+
+        // Seven flexes for Czech only
+        if ($flex < 1 || $flex > 7) {
+            $flex = 1;
+        }
+
+        $this->flex = $flex;
     }
 }

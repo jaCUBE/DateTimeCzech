@@ -1,21 +1,26 @@
 <?php
 
+/**
+ * Test month name replacing.
+ *
+ * @package  DateTimeCzech
+ * @author   Jakub Rychecký <jakub@rychecky.cz>
+ */
+
 use PHPUnit\Framework\TestCase;
 use DateTimeCzech\DateTimeCzech;
 
-/**
- * Basic tests with issues related to month processing.
- */
-
-class MonthTest extends TestCase {
+class MonthTest extends TestCase
+{
 
     /**
      * Test FULL name of the month in date format is alright.
      *
-     * @return void
      * @throws \Exception
+     * @return void
      */
-    public function testMonthNameFull() {
+    public function testMonthNameFull()
+    {
         $date = new DateTimeCzech('2018-11-22');
 
         $this->assertEquals($date->format('F[cz]'), 'listopad');
@@ -27,10 +32,11 @@ class MonthTest extends TestCase {
     /**
      * Test SHORT name of the month in date format is alright.
      *
-     * @return void
      * @throws \Exception
+     * @return void
      */
-    public function testDayNameShort() {
+    public function testDayNameShort()
+    {
         $date = new DateTimeCzech('2018-11-22');
 
         $this->assertEquals($date->format('M[cz]'), 'lis');

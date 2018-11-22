@@ -4,15 +4,16 @@ use PHPUnit\Framework\TestCase;
 use DateTimeCzech\DateTimeCzech;
 
 /**
- * Basic tests with issues related to month processing.
+ * Basic tests with issues related to day of the week processing.
  */
 
 class DayTest extends TestCase {
 
-
-
     /**
+     * Test FULL name of the day of the week in date format is alright.
      *
+     * @return void
+     * @throws \Exception
      */
     public function testDayNameFull() {
         $date = new DateTimeCzech('2018-11-21');
@@ -24,7 +25,10 @@ class DayTest extends TestCase {
     }
 
     /**
+     * Test SHORT name of the day of the week in date format is alright.
      *
+     * @return void
+     * @throws \Exception
      */
     public function testDayNameShort() {
         $date = new DateTimeCzech('2040-01-01');

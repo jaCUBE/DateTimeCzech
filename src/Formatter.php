@@ -65,22 +65,31 @@ class Formatter {
         $this->flex = $flex;
     }
 
-
+    /**
+     * Replace Czech variables in format string.
+     *
+     * @param string $format Format string according to date() and DateTime
+     *
+     * @return string Resulted format with replaced Czech variables
+     */
     public function format($format)
     {
-        // No Czech date format
+        // No Czech date format in format string
         if (strpos($format, '[cz]') === false) {
             return $format;
         }
 
+        // Replace variables in format for actual values
         $format = $this->replaceDayOfWeek($format);
         $format = $this->replaceMonth($format);
 
-        return $format;
+        return (string)$format;
     }
 
     /**
-     * @param $format
+     *
+     *
+     * @param string $format Format string according to date() and DateTime
      *
      * @return mixed
      */
@@ -101,7 +110,10 @@ class Formatter {
     }
 
     /**
-     * @param $format
+     *
+     *
+     * @param string $format Format string according to date() and DateTime
+     *
      * @return string
      */
     private function replaceMonth($format) {

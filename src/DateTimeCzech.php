@@ -42,7 +42,9 @@ class DateTimeCzech extends \DateTime
      * @return bool
      */
     public function isPublicHoliday() {
-        return false; // TODO: public holidays
+        $publicHoliday = new PublicHoliday($this);
+
+        return $publicHoliday->isPublicHoliday();
     }
 
     /**

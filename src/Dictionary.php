@@ -44,7 +44,7 @@ class Dictionary {
         [1 => 'září', 'září', 'září', 'září', '', 'září', 'září'],
         [1 => 'říjen', 'října', 'říjnu', 'říjem', '', 'říjnu', 'říjnem'],
         [1 => 'listopad', 'listopadu', 'listopadu', 'listopad', '', 'listopadu', 'listopadem'],
-        [1 => 'prosinec', 'prosince', 'prosince', 'prosinec', '', 'prosince', 'prosincem'],
+        [1 => 'prosinec', 'prosince', 'prosinci', 'prosinec', '', 'prosince', 'prosincem'],
     ];
 
     /**

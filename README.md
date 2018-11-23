@@ -30,8 +30,8 @@ $date->format('D[cz]'); // "st"
 ```
 
 ## Měsíce
-- `F[cz]` - Celý český název dne v týdnu
-- `M[cz]` - Zkrácený český název dne v týdnu
+- `F[cz]` - Celý český název měsíce
+- `M[cz]` - Zkrácený český název měsíce
 ```
 $date = new DateTimeCzech('2018-12-01');
 

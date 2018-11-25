@@ -22,11 +22,16 @@ class PublicHolidayTest extends TestCase
      */
     public function testGenericPublicHoliday()
     {
-        $date = new DateTimeCzech('2018-11-17');
-        $this->assertNotFalse($date->isPublicHoliday());
+        // November 16: no public holiday
+        $date = new DateTimeCzech('2018-11-16');
+        $this->assertFalse($date->isPublicHoliday());
 
-        // Proper holiday name in history
-        $date = new DateTimeCzech('1970-07-06');
-        $this->assertEquals($date->isPublicHoliday(), Dictionary::PUBLIC_HOLIDAY['07-06']);
+        // November 17: public holiday
+        $date->add(new DateInterval('P1D'));
+        $this->assertTrue($date->isPublicHoliday());
+
+        // November 18: no public holiday
+        $date->add(new DateInterval('P1D'));
+        $this->assertFalse($date->isPublicHoliday());
     }
 }

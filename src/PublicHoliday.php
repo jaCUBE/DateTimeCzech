@@ -33,17 +33,17 @@ class PublicHoliday
     }
 
     /**
-     * Check if date is public holiday in Czech Republic.
+     * Get holiday name if date is public holiday in Czech Republic.
      *
      * @throws \Exception
-     * @return bool|string Returns name of the public holiday or false if date is not public holiday
+     * @return string Name of the public holiday (empty string = no holiday for such date)
      */
-    public function isPublicHoliday()
+    public function getPublicHolidayName()
     {
         $date = $this->getDateTimeCzech()->format('Y-m-d');
         $holidayList = $this->getPublicHolidayListForYear();
 
-        return !empty($holidayList[$date]) ? $holidayList[$date] : false;
+        return !empty($holidayList[$date]) ? $holidayList[$date] : '';
     }
 
     /**

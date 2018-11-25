@@ -39,16 +39,27 @@ class DateTimeCzech extends \DateTime
     }
 
     /**
-     * Check if date is public holiday in Czech Republic.
+     * Get holiday name if date is public holiday in Czech Republic.
      *
      * @throws \Exception
-     * @return bool|string Returns name of the public holiday or false if date is not public holiday
+     * @return string Name of the public holiday (empty string = no holiday for such date)
      */
-    public function isPublicHoliday()
+    public function getPublicHolidayName()
     {
         $publicHoliday = new PublicHoliday($this);
 
-        return $publicHoliday->isPublicHoliday();
+        return (string)$publicHoliday->getPublicHolidayName();
+    }
+
+    /**
+     * Check if date is public holiday in Czech Republic.
+     *
+     * @throws \Exception
+     * @return bool Is date a public holiday?
+     */
+    public function isPublicHoliday()
+    {
+        return !empty($this->getPublicHolidayName());
     }
 
     /**

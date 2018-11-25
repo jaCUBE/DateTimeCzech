@@ -44,11 +44,11 @@ $date->format('M[cz]'); // "pro"
 ## Státní svátky, víkendy a pracovní dny
 Státní svátky:
 ```
-$date = new DateTimeCzech('2018-01-01');
-$date->isPublicHoliday(); // true
+$date = new DateTimeCzech('2018-04-30');
+$date->isPublicHoliday(); // false
 
 $date = new DateTimeCzech('2018-05-01');
-$date->isPublicHoliday(); // false
+$date->isPublicHoliday(); // true
 
 $date = new DateTimeCzech('2018-05-01');
 $date->getPublicHolidayName(); // "Svátek práce"

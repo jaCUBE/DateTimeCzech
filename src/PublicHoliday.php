@@ -18,18 +18,18 @@ class PublicHoliday
     const YEAR_EASTER_FRIDAY = 2016;
 
     /**
-     * @var DateTimeCzech DateTimeCzech object
+     * @var \DateTimeInterface DateTimeCzech object
      */
-    private $dateTimeCzech;
+    private $dateTime;
 
     /**
      * PublicHoliday constructor.
      *
-     * @param DateTimeCzech $dateTimeCzech DateTimeCzech object
+     * @param \DateTimeInterface $dateTime DateTimeCzech object
      */
-    public function __construct($dateTimeCzech)
+    public function __construct(\DateTimeInterface $dateTime)
     {
-        $this->setDateTimeCzech($dateTimeCzech);
+        $this->setDateTime($dateTime);
     }
 
     /**
@@ -40,7 +40,7 @@ class PublicHoliday
      */
     public function getPublicHolidayName()
     {
-        $date = $this->getDateTimeCzech()->format('Y-m-d');
+        $date = $this->getDateTime()->format('Y-m-d');
         $holidayList = $this->getPublicHolidayListForYear();
 
         return !empty($holidayList[$date]) ? $holidayList[$date] : '';
@@ -98,7 +98,7 @@ class PublicHoliday
             return $year;
         }
 
-        return (int)$this->getDateTimeCzech()->format('Y');
+        return (int)$this->getDateTime()->format('Y');
     }
 
     /**
@@ -106,9 +106,9 @@ class PublicHoliday
      *
      * @return DateTimeCzech DateTimeCzech object
      */
-    public function getDateTimeCzech()
+    public function getDateTime()
     {
-        return $this->dateTimeCzech;
+        return $this->dateTime;
     }
 
     /**
@@ -118,8 +118,8 @@ class PublicHoliday
      *
      * @return void
      */
-    public function setDateTimeCzech($dateTime)
+    public function setDateTime($dateTime)
     {
-        $this->dateTimeCzech = $dateTime;
+        $this->dateTime = $dateTime;
     }
 }

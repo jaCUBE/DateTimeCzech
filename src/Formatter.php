@@ -13,9 +13,9 @@ class Formatter
 {
 
     /**
-     * @var DateTimeCzech DateTime object
+     * @var \DateTimeInterface DateTime object
      */
-    private $dateTimeCzech;
+    private $dateTime;
 
     /**
      * @var int Flex in Czech (1-7)
@@ -25,12 +25,12 @@ class Formatter
     /**
      * Formatter constructor.
      *
-     * @param DateTimeCzech $dateTimeCzech DateTime object
+     * @param \DateTimeInterface $dateTime DateTime object
      * @param int $flex Flex in Czech (1-7)
      */
-    public function __construct($dateTimeCzech, $flex = 1)
+    public function __construct(\DateTimeInterface $dateTime, $flex = 1)
     {
-        $this->setDateTimeCzech($dateTimeCzech);
+        $this->setDateTime($dateTime);
         $this->setFlex($flex);
     }
 
@@ -66,13 +66,13 @@ class Formatter
     {
         // Day of the week: replace full textual representation
         if (strpos($format, 'l[cz]') !== false) {
-            $dayName = Dictionary::DAY_NAME[$this->getDateTimeCzech()->format('N')][$this->getFlex()];
+            $dayName = Dictionary::DAY_NAME[$this->getDateTime()->format('N')][$this->getFlex()];
             $format = $this->replaceInFormat('l[cz]', $dayName, $format);
         }
 
         // Day of the week: replace short textual representation
         if (strpos($format, 'D[cz]') !== false) {
-            $dayName = Dictionary::DAY_NAME_SHORT[$this->getDateTimeCzech()->format('N')];
+            $dayName = Dictionary::DAY_NAME_SHORT[$this->getDateTime()->format('N')];
             $format = $this->replaceInFormat('D[cz]', $dayName, $format);
         }
 
@@ -90,13 +90,13 @@ class Formatter
     {
         // Month: replace full textual representation
         if (strpos($format, 'F[cz]') !== false) {
-            $monthName = Dictionary::MONTH_NAME[$this->getDateTimeCzech()->format('n')][$this->getFlex()];
+            $monthName = Dictionary::MONTH_NAME[$this->getDateTime()->format('n')][$this->getFlex()];
             $format = $this->replaceInFormat('F[cz]', $monthName, $format);
         }
 
         // Month: replace short textual representation
         if (strpos($format, 'M[cz]') !== false) {
-            $monthName = Dictionary::MONTH_NAME_SHORT[$this->getDateTimeCzech()->format('n')];
+            $monthName = Dictionary::MONTH_NAME_SHORT[$this->getDateTime()->format('n')];
             $format = $this->replaceInFormat('M[cz]', $monthName, $format);
         }
 
@@ -143,9 +143,9 @@ class Formatter
      *
      * @return DateTimeCzech DateTimeCzech object
      */
-    public function getDateTimeCzech()
+    public function getDateTime()
     {
-        return $this->dateTimeCzech;
+        return $this->dateTime;
     }
 
     /**
@@ -153,9 +153,9 @@ class Formatter
      *
      * @param DateTimeCzech $dateTime
      */
-    public function setDateTimeCzech($dateTime)
+    public function setDateTime($dateTime)
     {
-        $this->dateTimeCzech = $dateTime;
+        $this->dateTime = $dateTime;
     }
 
     /**
